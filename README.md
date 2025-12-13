@@ -1,8 +1,8 @@
-**BaseKernel IS A 32 BIT OPERATING SYSTEM FROM SCRATCH made BT Huguini79 TO SHOW PEOPLE HOW TO CREATE AN OPERATING SYSTEM FROM SCRATCH WITH A LOT OF DETAILS, LIKE A LOT OF COMMENTS IN C OR IN X86 ASSEMBLY
-**
+<h1>BaseKernel IS A 32 BIT OPERATING SYSTEM FROM SCRATCH made BT Huguini79 TO SHOW PEOPLE HOW TO CREATE AN OPERATING SYSTEM FROM SCRATCH WITH A LOT OF DETAILS, LIKE A LOT OF COMMENTS IN C OR IN X86 ASSEMBLY</h1>
 
 <img width="747" height="243" alt="Screenshot 2025-12-13 21 32 37" src="https://github.com/user-attachments/assets/40764e62-b25c-4cd7-a032-6a76ad449543" />
 
+<p>
 =======DIRECTORIES========
 /build --> All the object files are here
 /src ---> All the source code files are here
@@ -22,6 +22,7 @@ src/io.h --> The I/O header file
 src/io/io.asm --> The I/O implementation in X86 Assembly from scratch
 src/keyboard.h - The Keyboard header file
 src/io/keyboard/keyboard.c - The Keyboard implementation in C from scratch
+</p>
 
 BOOTING IN REAL HARDWARE
 ![BaseKernel image3](https://github.com/user-attachments/assets/55fb20fa-a24b-4038-9819-c333b756a765)
