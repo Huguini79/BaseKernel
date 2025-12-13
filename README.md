@@ -5,13 +5,13 @@
 <img width="747" height="243" alt="Screenshot 2025-12-13 21 32 37" src="https://github.com/user-attachments/assets/40764e62-b25c-4cd7-a032-6a76ad449543" />
 
 <h3>
-<h2>=======DIRECTORIES========</h2>
+<h1>=======DIRECTORIES========</h1>
 <h3>/build --> All the object files are here</h3>
 <h3>/src ---> All the source code files are here</h3>
 <h3>/iso | iso/boot | iso/boot/grub --> The GRUB configuration file and the elf kernel file are here</h3>
 <h3>/bin --> The final ISO image of the operating system is here</h3>
 
-<h2>=====FILES=====</h2>
+<h1>=====FILES=====</h1>
 <h3>build.sh --> The build file</h3>
 <h3>/src/linker/linker.ld --> The linker file</h3>
 <h3>/iso/boot/grub/grub.cfg --> The GRUB configuration file</h3>
