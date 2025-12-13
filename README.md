@@ -1,11 +1,11 @@
-<h1>BaseKernel IS A 32 BIT OPERATING SYSTEM FROM SCRATCH made BT Huguini79 TO SHOW PEOPLE HOW TO CREATE AN OPERATING SYSTEM FROM SCRATCH WITH A LOT OF DETAILS, LIKE A LOT OF COMMENTS IN C OR IN X86 ASSEMBLY</h1>
+<h1>BaseKernel IS A 32 BIT OPERATING SYSTEM FROM SCRATCH MADE BY Huguini79 TO SHOW PEOPLE HOW TO CREATE AN OPERATING SYSTEM FROM SCRATCH WITH A LOT OF DETAILS, LIKE A LOT OF COMMENTS IN C OR IN X86 ASSEMBLY</h1>
 
 <img width="747" height="243" alt="Screenshot 2025-12-13 21 32 37" src="https://github.com/user-attachments/assets/40764e62-b25c-4cd7-a032-6a76ad449543" />
 
 <p>
-=======DIRECTORIES========
-/build --> All the object files are here
-/src ---> All the source code files are here
+<h2>=======DIRECTORIES========</h2>
+<p>/build --> All the object files are here</p>
+<p>/src ---> All the source code files are here</p>
 /iso | iso/boot | iso/boot/grub --> The GRUB configuration file and the elf kernel file are here
 /bin --> The final ISO image of the operating system is here
 
