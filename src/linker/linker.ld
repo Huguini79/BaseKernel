@@ -1,0 +1,11 @@
+OUTPUT_FORMAT(elf32-i386)
+ENTRY(START)
+
+SECTIONS {
+	. = 0X100000;
+
+	.TEXT : {*(.TEXT)}
+	.DATA : {*(.DATA)}
+	.BSS : {*(.BSS)}
+
+}
