@@ -13,17 +13,17 @@
 
 <h2>=====FILES=====</h2>
 <h3>build.sh --> The build file</h3>
-<h3>src/linker/linker.ld --> The linker file</h3>
-<h3>iso/boot/grub/grub.cfg --> The GRUB configuration file</h3>
-<h3>src/kernel/kernel.asm --> The entry point from GRUB and the C kernel file</h3>
-<h3>src/kernel/kernel.c --> The C kernel file</h3>
-<h3>src/kernel/kernel.h --> The C kernel header file</h3>
-<h3>src/vga.h --> The VGA header file</h3>
-<h3>src/vga/vga.c --> The VGA implementation in C from scratch</h3>
-<h3>src/io.h --> The I/O header file</h3>
-<h3>src/io/io.asm --> The I/O implementation in X86 Assembly from scratch</h3>
-<h3>src/keyboard.h - The Keyboard header file</h3>
-<h3>src/io/keyboard/keyboard.c - The Keyboard implementation in C from scratch</h3>
+<h3>/src/linker/linker.ld --> The linker file</h3>
+<h3>/iso/boot/grub/grub.cfg --> The GRUB configuration file</h3>
+<h3>/src/kernel/kernel.asm --> The entry point from GRUB and the C kernel file</h3>
+<h3>/src/kernel/kernel.c --> The C kernel file</h3>
+<h3>/src/kernel/kernel.h --> The C kernel header file</h3>
+<h3>/src/vga.h --> The VGA header file</h3>
+<h3>/src/vga/vga.c --> The VGA implementation in C from scratch</h3>
+<h3>/src/io.h --> The I/O header file</h3>
+<h3>/src/io/io.asm --> The I/O implementation in X86 Assembly from scratch</h3>
+<h3>/src/keyboard.h - The Keyboard header file</h3>
+<h3>/src/io/keyboard/keyboard.c - The Keyboard implementation in C from scratch</h3>
 </h3>
 
 <br><br>
