@@ -9,7 +9,7 @@
 /iso | iso/boot | iso/boot/grub --> The GRUB configuration file and the elf kernel file are here
 /bin --> The final ISO image of the operating system is here
 
-=====FILES=====
+<h2>=====FILES=====</h2>
 build.sh --> The build file
 src/linker/linker.ld --> The linker file
 iso/boot/grub/grub.cfg --> The GRUB configuration file
@@ -23,6 +23,8 @@ src/io/io.asm --> The I/O implementation in X86 Assembly from scratch
 src/keyboard.h - The Keyboard header file
 src/io/keyboard/keyboard.c - The Keyboard implementation in C from scratch
 </p>
+
+<br><br>
 
 BOOTING IN REAL HARDWARE
 ![BaseKernel image3](https://github.com/user-attachments/assets/55fb20fa-a24b-4038-9819-c333b756a765)
