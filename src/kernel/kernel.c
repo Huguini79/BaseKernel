@@ -21,6 +21,15 @@ void kernel_main() {
 	// PUT AN EXAMPLE INTO THE SCREEN
 	printb("BaseKernel - github.com/Huguini79/BaseKernel");
 
+	/*
+	go_down();
+	go_down();
+	*/
+	row_plus();
+	row_plus();
+	printb("root@BaseKernel$");
+	go_right();
+
 	// INIT THE KEYBOARD
 	init_keyboard();
 
