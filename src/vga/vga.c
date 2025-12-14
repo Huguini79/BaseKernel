@@ -22,6 +22,16 @@ size_t strlen(const char* str) {
 
 }
 
+// DEFINE PANIC FUNCTION
+void panic(const char* error) {
+	size_t len = strlen(error);
+
+	for(int i = 0; i < len; i++) {
+		perfectchar(error[i], 0x4F);
+	}
+
+}
+
 // DEFINE ROWPLUS FUNCTION
 void row_plus() {
 	vga->row += 1;

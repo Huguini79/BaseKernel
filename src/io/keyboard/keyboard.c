@@ -7,12 +7,46 @@
 #include "vga.h"
 #include "io.h"
 
+#define KBRD_INTRFC 0x64
+#define KBRD_BIT_KDATA 0 /* keyboard data is in buffer (output buffer is empty) (bit 0) */
+#define KBRD_BIT_UDATA 1 /* user data is in buffer (command buffer is empty) (bit 1) */
+#define KBRD_IO 0x60 /* keyboard IO port */
+#define KBRD_RESET 0xFE /* reset CPU command */
+#define bit(n) (1<<(n)) /* Set bit n to 1 */
+#define check_flag(flags, n) ((flags) & bit(n))
+
 char buffer[512];
 int pos = 0;
 
 void anadir_caracter(char c) {
     buffer[pos++] = c;
     buffer[pos] = '\0';
+}
+
+void reboot() {
+uint8_t temp;
+
+                        asm volatile ("cli"); /* disable all interrupts */
+                    
+                        /* Clear all keyboard buffers (output and command buffers) */
+                        do
+                        {
+                            temp = insb(KBRD_INTRFC);
+                            if (check_flag(temp, KBRD_BIT_KDATA) != 0)
+                                insb(KBRD_IO);
+                        } while (check_flag(temp, KBRD_BIT_UDATA) != 0);
+                    
+                        outb(KBRD_INTRFC, KBRD_RESET); /* pulse CPU reset line */
+                        loop:
+                            asm volatile ("hlt"); /* if that didn't work, halt the CPU */
+                            goto loop; /* if a NMI is received, halt again */
+}
+
+void returntocommandline() {
+                        overwrite();
+        				row_plus();
+        				printb("root@BaseKernel$");
+                        go_right();
 }
 
 int strncmp(const char* str1, const char* str2, int n)
@@ -49,7 +83,10 @@ void init_keyboard() {
 			}
 
 			if(scancode == 0x0E) { // BACKSPACE SCANCODE
-				backspace_vga();
+				if(pos > 0) {
+                    buffer[--pos] = '\0';
+                }
+                backspace_vga();
 			}
 
 			if(scancode == 0x4B) { // LEFT ARROW
@@ -69,10 +106,53 @@ void init_keyboard() {
 			}
 
 			if(scancode == 0x1C) {
-				overwrite();
-				row_plus();
-				printb("root@BaseKernel$");
-				go_right();
+                if(strncmp(buffer, "test", 4) == 0) {
+                    overwrite();
+                    row_plus();
+                    printb("TEST EXECUTED WITH SUCCESS");
+                    returntocommandline();
+                
+                } else if(strncmp(buffer, "", 1) == 0) {
+                        overwrite();
+        				row_plus();
+        				printb("root@BaseKernel$");
+                        go_right();
+                    }
+                else if(strncmp(buffer, "exit", 4) == 0) {
+                        outw(0xB004, 0x2000);
+                        outw(0x604, 0x2000);
+                        outw(0x4004, 0x3400);
+                        outw(0x600, 0x34);
+                }
+                    
+                else if(strncmp(buffer, "help", 4) == 0) {
+                            overwrite();
+                            row_plus();
+                            printb("Commands:\ntest - Test command\nclear - Clear the screen\nhelp - See the available commands\nexit - Shutdown the system(this only works on QEMU, Bochs and VirtualBox)\nreboot - Reboots the systems(this works also in real hardware)");
+                            returntocommandline();
+                }
+                else if(strncmp(buffer, "clear", 5) == 0) {
+                        clear();
+                        returntocommandline();
+                }
+
+                    else if(strncmp(buffer, "reboot", 6) == 0) {
+                        reboot();
+                }
+                    
+
+                else {
+                    overwrite();
+                    row_plus();
+                    panic("**KERNEL PANIC - THE COMMAND WASN'T INTERPRETED**"); 
+                    returntocommandline();
+                }
+				// overwrite();
+				// row_plus();
+				// printb("root@BaseKernel$");
+				// go_right();
+                pos = 0;
+                buffer[pos] = '\0';
 			}
 
 			if(scancode == 0x1E) { // A SCANCODE

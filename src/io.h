@@ -8,7 +8,7 @@ unsigned short insb(unsigned short port);
 unsigned short insw(unsigned short port);
 
 // DEFINE THE OUTB/OUTW FUNCTIONS
-void outb(unsigned char val, unsigned short port);
-void outw(unsigned char val, unsigned short port);
+void outb(unsigned short port, unsigned short val);
+void outw(uint16_t port, uint16_t val);
 
 #endif
