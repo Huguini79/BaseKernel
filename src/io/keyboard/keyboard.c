@@ -7,6 +7,8 @@
 #include "vga.h"
 #include "io.h"
 
+#include <stdbool.h>
+
 #define KBRD_INTRFC 0x64
 #define KBRD_BIT_KDATA 0 /* keyboard data is in buffer (output buffer is empty) (bit 0) */
 #define KBRD_BIT_UDATA 1 /* user data is in buffer (command buffer is empty) (bit 1) */
@@ -17,6 +19,8 @@
 
 char buffer[512];
 int pos = 0;
+
+bool nano_style = false;
 
 void anadir_caracter(char c) {
     buffer[pos++] = c;
@@ -90,20 +94,29 @@ void init_keyboard() {
 			}
 
 			if(scancode == 0x4B) { // LEFT ARROW
-				go_left();
+				if(nano_style != false) {
+					go_left();
+				}
 			}
 
 			if(scancode == 0x4D) { // RIGHT ARROW
-				go_right();
+				if(nano_style != false) {
+					go_right();
+				}
 			}
 
 			if(scancode == 0x48) { // UP ARROW
-				go_up();
+				if(nano_style != false) {
+					go_up();
+				}
 			}
 
 			if(scancode == 0x50) { // DOWN ARROW
-				go_down();
+				if(nano_style != false) {
+					go_down();
+				}
 			}
+
 
 			if(scancode == 0x1C) {
                 if(strncmp(buffer, "test", 4) == 0) {
@@ -128,13 +141,17 @@ void init_keyboard() {
                 else if(strncmp(buffer, "help", 4) == 0) {
                             overwrite();
                             row_plus();
-                            printb("Commands:\ntest - Test command\nclear - Clear the screen\nhelp - See the available commands\nexit - Shutdown the system(this only works on QEMU, Bochs and VirtualBox)\nreboot - Reboots the systems(this works also in real hardware)");
+                            printb("Commands:\ntest - Test command\nclear - Clear the screen\nhelp - See the available commands\nexit - Shutdown the system(this only works on QEMU, Bochs and VirtualBox)\nreboot - Reboots the systems(this works also in real hardware)\nenablenanostyle - Enables the nano style(you can move the cursor with the arrow keys)");
                             returntocommandline();
                 }
                 else if(strncmp(buffer, "clear", 5) == 0) {
                         clear();
                         returntocommandline();
                 }
+
+		else if(strncmp(buffer, "enablenanostyle", 15) == 0) {
+			nano_style = true;
+		}
 
                     else if(strncmp(buffer, "reboot", 6) == 0) {
                         reboot();
