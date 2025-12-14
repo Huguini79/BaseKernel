@@ -81,6 +81,7 @@ void go_down() {
 
 // DEFINE THE BACKSPACE_VGA FUNCTION
 void backspace_vga() {
+	/*
 	// CHECK IF WE DO NOT HAVE TEXT IN THE X COLUMN
 	if(vga->col == 0) {
 		vga->col = VGA_WIDTH; // PUT OUR X POSITION IN THE VGA_WIDTH(80) POSITION TO GO TO THE FINAL POSITION OF THE X COLUMN
@@ -89,15 +90,21 @@ void backspace_vga() {
 		xychar(vga->col, vga->row, ' ', 0x22); // OVERWRITE THE NEW X AND Y POSITIONS WITH AN SPACE (WE DELETE THE CHARACTER OF THAT POSITION)
 
 	} else {
+	*/
 		// WE CAN CONTINUE NORMALLY DELETING A CHARACTER FROM THE X COLUMN
 
 		// vga->col -= 1; // DECREASE OUR X POSITION (WE GO 1 POSITION LESS OF THE X COLUMN)
 
+		if(vga->col > 17) {
+			go_left();
+
+                	xychar(vga->col, vga->row, ' ', 0x4F); // OVERWRITE THE NEW X AND Y POSITIONS WITH AN SPACE (WE DELETE THE CHARACTER OF THAT POSITION)
+		}
+		/*
 		go_left();
 
 		xychar(vga->col, vga->row, ' ', 0x4F); // OVERWRITE THE NEW X AND Y POSITIONS WITH AN SPACE (WE DELETE THE CHARACTER OF THAT POSITION)
-
-	}
+		*/
 }
 
 // DEFINE THE XYCHAR FUNCTION
