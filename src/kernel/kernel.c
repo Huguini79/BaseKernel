@@ -20,6 +20,8 @@ void kernel_main() {
 
 	// PUT AN EXAMPLE INTO THE SCREEN
 	printb("BaseKernel - github.com/Huguini79/BaseKernel");
+	row_plus();
+	printb("YOUTUBE: youtube.com/@ProgramandoconHuguini");
 
 	/*
 	go_down();

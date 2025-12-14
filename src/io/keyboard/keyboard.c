@@ -28,7 +28,7 @@ void anadir_caracter(char c) {
 }
 
 void reboot() {
-uint8_t temp;
+			uint8_t temp;
 
                         asm volatile ("cli"); /* disable all interrupts */
                     
@@ -156,9 +156,13 @@ void init_keyboard() {
                     else if(strncmp(buffer, "reboot", 6) == 0) {
                         reboot();
                 }
-                    
+                    else if(strncmp(buffer, ";", 1) == 0) {
+			overwrite();
+			row_plus();
+			returntocommandline();
+			}
 
-                else {
+            else {
                     overwrite();
                     row_plus();
                     panic("**KERNEL PANIC - THE COMMAND WASN'T INTERPRETED**"); 
@@ -171,6 +175,26 @@ void init_keyboard() {
                 pos = 0;
                 buffer[pos] = '\0';
 			}
+
+		if(scancode == 0x33) { // , SCANCODE
+			perfectchar2(',', 0x2F);
+			anadir_caracter(',');
+		}
+
+		if(scancode == 0x35) {
+			perfectchar2('/', 0x2F);
+			anadir_caracter('/');
+		}
+
+		if(scancode == 0x34) {
+			perfectchar2('.', 0x2F);
+			anadir_caracter('.');
+		}
+
+		if(scancode == 0x0D) {
+			 perfectchar2('=', 0x2F);
+			 anadir_caracter('=');
+		}
 
 			if(scancode == 0x1E) { // A SCANCODE
 				perfectchar2('a', 0x2F);
