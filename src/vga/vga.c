@@ -25,6 +25,7 @@ void panic(const char* error) {
 void row_plus() {
 	vga->row += 1;
 	vga->col = 0;
+	return;
 }
 
 // DEFINE OVERWRITE FUNCTION
@@ -107,6 +108,7 @@ void perfectchar(char c, char color) {
 	if(c == '\n') {
 		vga->row += 1; // INCREASE THE Y POSITION (GO DOWN)
 		vga->col = 0; // START FROM THE POSITION 0 IN THE X COLUMN
+		return;
 	}
 
 	xychar(vga->col, vga->row, c, color); // WRITE THE CHARACTER AUTOMATICALLY USING THE XYCHAR POSITION
@@ -133,6 +135,7 @@ void perfectchar2(char c, char color) {
         if(c == '\n') {
                 vga->row += 1; // INCREASE THE Y POSITION (GO DOWN)
                 vga->col = 0; // START FROM THE POSITION 0 IN THE X COLUMN
+				return;
         }
 
         xychar(vga->col, vga->row, c, color); // WRITE THE CHARACTER AUTOMATICALLY USING THE XYCHAR POSITION

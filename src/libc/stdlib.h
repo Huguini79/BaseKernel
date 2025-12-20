@@ -1,6 +1,10 @@
 #ifndef STDLIB_H
 #define STDLIB_H
 
+#include "vga.h"
+
+#include "libc/stdio.h"
+
 static unsigned long int next = 1;
 
 int rand(void) {
@@ -52,6 +56,15 @@ void itoa(int n, char* str) {
     str[i] = '\0';
 
     reverse(str, i);
+}
+
+void exit(uint8_t status) {
+    if(status == 0) {
+        printf("\n*PROGRAM EXITED WITH STATUS 0*");
+    
+    } else {
+        panic("\n\nKERNEL PANIC - PROGRAM EXITED WITH STATUS 1");
+    }
 }
 
 #endif

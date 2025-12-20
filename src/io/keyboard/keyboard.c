@@ -131,7 +131,7 @@ void init_keyboard() {
                 else if(strncmp(buffer, "help", 4) == 0) {
                             overwrite();
                             row_plus();
-                            printb("Commands:\ntest - Test command\nclear - Clear the screen\nhelp - See the available commands\nexit - Shutdown the system(this only works on QEMU, Bochs and VirtualBox)\nreboot - Reboots the systems(this works also in real hardware)\nenablenanostyle - Enables the nano style(you can move the cursor with the arrow keys)\nrandomnum - Prints a random number");
+                            printb("Commands:\ntest - Test command\nclear - Clear the screen\nhelp - See the available commands\nexit - Shutdown the system(this only works on QEMU, Bochs and VirtualBox)\nreboot - Reboots the systems(this works also in real hardware)\nenablenanostyle - Enables the nano style(you can move the cursor with the arrow keys)\nrandomnum - Prints a random number\nhello - Hello command using the printf function of the libc implementation");
                             returntocommandline();
                 }
                 else if(strncmp(buffer, "clear", 5) == 0) {
@@ -159,7 +159,9 @@ void init_keyboard() {
 		}
 
 		else if(strncmp(buffer, "hello", 5) == 0) {
-			printf("HELLO");
+			printf("\nHELLO");
+			exit(0);
+			returntocommandline();
 		}
 
                     else if(strncmp(buffer, "reboot", 6) == 0) {
