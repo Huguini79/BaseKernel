@@ -7,8 +7,14 @@
 #include "vga.h"
 #include "io.h"
 
+#include "libc/stdlib.h"
+#include "libc/stdio.h"
+#include "libc/string.h"
+
 #include <stdbool.h>
 
+// RESET COMMAND PARAMETERS
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define KBRD_INTRFC 0x64
 #define KBRD_BIT_KDATA 0 /* keyboard data is in buffer (output buffer is empty) (bit 0) */
 #define KBRD_BIT_UDATA 1 /* user data is in buffer (command buffer is empty) (bit 1) */
@@ -16,6 +22,7 @@
 #define KBRD_RESET 0xFE /* reset CPU command */
 #define bit(n) (1<<(n)) /* Set bit n to 1 */
 #define check_flag(flags, n) ((flags) & bit(n))
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 char buffer[512];
 int pos = 0;
@@ -51,23 +58,6 @@ void returntocommandline() {
         				row_plus();
         				printb("root@BaseKernel$");
                         go_right();
-}
-
-int strncmp(const char* str1, const char* str2, int n)
-{
-    unsigned char u1, u2;
-
-    while(n-- > 0)
-    {
-        u1 = (unsigned char)*str1++;
-        u2 = (unsigned char)*str2++;
-        if (u1 != u2)
-            return u1 - u2;
-        if (u1 == '\0')
-            return 0;
-    }
-
-    return 0;
 }
 
 // DEFINE THE INIT_KEYBOARD FUNCTION
@@ -141,7 +131,7 @@ void init_keyboard() {
                 else if(strncmp(buffer, "help", 4) == 0) {
                             overwrite();
                             row_plus();
-                            printb("Commands:\ntest - Test command\nclear - Clear the screen\nhelp - See the available commands\nexit - Shutdown the system(this only works on QEMU, Bochs and VirtualBox)\nreboot - Reboots the systems(this works also in real hardware)\nenablenanostyle - Enables the nano style(you can move the cursor with the arrow keys)");
+                            printb("Commands:\ntest - Test command\nclear - Clear the screen\nhelp - See the available commands\nexit - Shutdown the system(this only works on QEMU, Bochs and VirtualBox)\nreboot - Reboots the systems(this works also in real hardware)\nenablenanostyle - Enables the nano style(you can move the cursor with the arrow keys)\nrandomnum - Prints a random number");
                             returntocommandline();
                 }
                 else if(strncmp(buffer, "clear", 5) == 0) {
@@ -151,6 +141,25 @@ void init_keyboard() {
 
 		else if(strncmp(buffer, "enablenanostyle", 15) == 0) {
 			nano_style = true;
+		}
+		
+		else if(strncmp(buffer, "randomnum", 9) == 0) {
+			int random_value = rand();
+			
+			char random_value_buffer[1024];
+
+			itoa(random_value, random_value_buffer);
+
+			overwrite();
+			row_plus();
+			printb(random_value_buffer);
+			returntocommandline();
+
+
+		}
+
+		else if(strncmp(buffer, "hello", 5) == 0) {
+			printf("HELLO");
 		}
 
                     else if(strncmp(buffer, "reboot", 6) == 0) {

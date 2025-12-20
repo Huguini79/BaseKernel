@@ -2,25 +2,14 @@
 
 // IMPORT THE LIBRARIES THAT WE NEED
 #include "vga.h"
-// #include "string.h"
+
+#include "libc/string.h"
 
 #include <stdint.h>
 #include <stddef.h>
 
 // INITIALIZE OUR VGA STRUCT
 struct vga* vga;
-
-// DEFINE STRLEN() FUNCTION
-size_t strlen(const char* str) {
-	size_t len = 0;
-
-	while(str[len]) {
-		len++;
-	}
-
-	return len;
-
-}
 
 // DEFINE PANIC FUNCTION
 void panic(const char* error) {

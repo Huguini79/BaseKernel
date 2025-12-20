@@ -23,7 +23,7 @@ mkdir build/memory/paging    #
 
 # CHECK THE TOOLCHAIN(BE CAREFULL WITH GRUB IN CROSTINI ENVIROMENTS OR LINUX VIRTUAL ENVIROMENTS)
 ####################################################################################################
-sudo apt-get install gcc nasm xorriso qemu-system-x86 grub-pc grub2-common                         #
+# sudo apt-get install gcc nasm xorriso qemu-system-x86 grub-pc grub2-common                         #
 ####################################################################################################
 
 # BUILD NASM(X86 ASSEMBLY PROGRAMMING LANGUAGE) FILES
